@@ -1,4 +1,4 @@
-package collections;
+package stream;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -6,13 +6,16 @@ import java.util.Map;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-public class conversions {
+public class CollectionsToStreams {
 
     /**
-     * The "Java 8 way" of converting between collections is to use the Stream class.
-     * Given that, this file will provide examples of converting from specific implementations of Collection to Stream,
-     * and vice-versa.
+     * Making a stream from an in-lined array literal.
      */
+    public Stream<String> streamLiteralInstantiation() {
+        return Stream.of("Hello and",
+                "welcome to",
+                "the Java8Cookbook.");
+    }
 
 
     /**
@@ -22,6 +25,7 @@ public class conversions {
         return Arrays.stream(arr);
     }
 
+
     /**
      * Converting an Array of primitive integers to an IntStream, a specialized Stream implementation.
      * This can also be done with "double" (DoubleStream) and "long" (LongStream). For other primitives, you will need
@@ -30,6 +34,7 @@ public class conversions {
     public IntStream intArrayToIntStream(final int[] arr) {
         return Arrays.stream(arr);
     }
+
 
     /**
      * An example of converting an Array of a primitive into a Stream of its Wrapper class via boxing.
@@ -41,6 +46,7 @@ public class conversions {
                 .mapToObj(index -> arr[index]);
     }
 
+
     /**
      * Converting from a Collection (List, Set, Queue, Vector, Map.Entry, etc.) into a Stream.
      */
@@ -48,9 +54,11 @@ public class conversions {
         return collection.stream();
     }
 
+
     /**
      * Converting a Map<K, V> into a Stream of Map.Entry.
-     * The Stream class can only have one type, so we have two choices: Use Map.Entry or a custom class like our KeyVal.
+     * The Stream class can only have one type, so we have two choices: Use Map.Entry or a custom class that fits
+     * your needs.
      */
     public <K, V> Stream<Map.Entry<K, V>> mapToStream(final Map<K, V> myMap) {
         return myMap.entrySet().stream();
