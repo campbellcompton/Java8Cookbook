@@ -1,8 +1,7 @@
 # Java8Cookbook
 Simple recipes for migrating your Java.
 
-## Current Topics
-* Streams
+### [Streams](https://github.com/campbellcompton/Java8Cookbook/tree/master/src/stream)
 
 ## Future Topics
 * CompletableFuture and asynchrony

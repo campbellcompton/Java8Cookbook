@@ -1,6 +1,7 @@
 package stream;
 
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
@@ -61,7 +62,7 @@ public class UsingStreams {
 
 
     /**
-     * sort() will sort your Stream<T> by using T's comparator.
+     * sorted() will sort your Stream<T> by using T's comparator.
      * Note that if T is not comparable, a ClassCastException may be thrown.
      */
     Stream<String> sortingExample() {
@@ -72,7 +73,7 @@ public class UsingStreams {
 
 
     /**
-     * sort(Comparator comparator) allows you to supply your own Comparator to sort your Stream.
+     * sorted(Comparator comparator) allows you to supply your own Comparator to sort your Stream.
      * In this case, we're sorting by ascending String length.
      */
     Stream<String> sortingWithCustomComparatorExample() {
@@ -81,5 +82,24 @@ public class UsingStreams {
         // yields "blap", "blips", "blooper".
     }
 
+
+    /**
+     * Collapsing multi-dimensional Streams via flatMap().
+     */
+    Stream<String> flatMapExample() {
+        return Stream.of(Stream.of("a1", "a2", "a3"), Stream.of("b1", "b2", "b3"), Stream.of("c1", "c2", "c3"))
+                .flatMap(Function.identity());
+        // yields "a1", "a2", "a3", "b1", "b2", ...
+    }
+
+
+    /**
+     * skip(long n) will skip the first n elements.
+     */
+    Stream<String> skipExample() {
+        return Stream.of("bad", "good", "also good")
+                .skip(1);
+        // yields "good", "also good"
+    }
 
 }
